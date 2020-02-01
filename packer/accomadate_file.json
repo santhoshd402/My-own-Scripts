@@ -1,0 +1,49 @@
+{
+    "variables": 
+    {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "aws_region": "",
+        "aws_source_ami": "",
+        "azure_client_id":"",
+        "azure_client_secret":"",
+        "azure_tenant_id":"",
+        "azure_subscription_id":"",
+        "azure_":""
+    },
+    "builders": 
+    [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "ami_name": "petclinic--{{isotime | clean_resource_name}}",
+            "instance_type": "t2.micro",
+            "region": "{{user `aws_region`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "source_ami": "{{user `aws_source_ami`}}",
+            "ssh_username": "ubuntu"
+        },
+        {
+            "type": "azure-arm",
+            "client_id": "{{user `azure_client_id`}}",
+            "client_secret": "{{user `azure_client_secret`}}",
+            "tenant_id": "{{user `azure_tenant_id`}}",
+            "subscription_id": "{{user `azure_subscription_id`}}",
+            "image_publisher": "Canonical",
+            "image_offer": "UbuntuServer",
+            "image_sku": "16.04-LTS",
+            "location": "East US",
+            "vm_size": "Standard_B1s",
+            "os_type": "Linux",
+            "managed_image_resource_group_name": "packer",
+            "managed_image_name": "packer_azure_image"
+        }
+    ],
+    "provisioners": 
+    [
+        {
+            "type": "shell",
+            "script": "./deploy.sh"
+        }
+    ]
+}

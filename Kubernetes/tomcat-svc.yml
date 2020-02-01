@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  namespace: dev-env
+  name: mytomcatdp
+  labels:
+    name: mytomcatdp
+    type: app
+spec:
+  type: NodePort
+  selector:
+    name: mytomcatdp
+    type: dev
+  ports:
+  - nodePort: 30003 
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+
+    

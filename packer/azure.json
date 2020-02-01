@@ -1,0 +1,27 @@
+{
+    "builders":
+    [
+        {
+            "type": "azure-arm",
+            "client_id": "81a26dc9-c4d5-4f22-944c-c28160371812",
+            "client_secret": "276857d0-54f2-4b53-8a6c-39a5f13b071b",
+            "tenant_id": "10710f59-17f2-42fa-9b45-e94ad99a581c",
+            "subscription_id": "9139cb2a-ec85-4977-be84-f78dcf390bcd",
+            "image_publisher": "Canonical",
+            "image_offer": "UbuntuServer",
+            "image_sku": "16.04-LTS",
+            "location": "East US",
+            "vm_size": "Standard_B1s",
+            "os_type": "Linux",
+            "managed_image_resource_group_name": "packer",
+            "managed_image_name": "packer_azure_image"
+        }
+    ],
+    "provisioners": 
+    [
+        {
+            "type": "shell",
+            "script": "./deploy.sh"
+        }
+    ]
+}

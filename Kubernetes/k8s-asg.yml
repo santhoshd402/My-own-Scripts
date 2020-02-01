@@ -1,0 +1,15 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata: 
+  namespace: dev-env
+  name: mytomcatdp-asg
+  labels: 
+    name: mytomcatdp-asg
+spec: 
+  scaleTargetRef: 
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mytomcatdp
+  maxReplicas: 5
+  minReplicas: 1
+  targetCPUUtilizationPercentage: 50

@@ -1,0 +1,34 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: install apache2 and update
+      apt:
+        name: apache2
+        update_cache: yes
+        state: present 
+      notify: 
+        - restart apache2  
+    - name: install all modules
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - php
+        - libapache2-mod-php
+        - php-mysql
+        - php-cli
+      notify: 
+        - restart apache2
+    - name: file creating
+      file:
+        path: /var/www/html/info.php
+        state: touch  
+  handlers:    
+    - name: restart apache2
+      systemd: 
+        name: apache2
+        state: restarted 
+        mode: '0644'
+
+
+

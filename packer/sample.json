@@ -1,0 +1,29 @@
+{
+    "variables": 
+    {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "aws_region": "us-west-2",
+        "aws_source_ami": "ami-06f2f779464715dc5"
+    },
+    "builders": 
+    [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "ami_name": "petclinic--{{isotime | clean_resource_name}}",
+            "instance_type": "t2.micro",
+            "region": "{{user `aws_region`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "source_ami": "{{user `aws_source_ami`}}",
+            "ssh_username": "ubuntu"
+        }
+    ],
+    "provisioners": 
+    [
+        {
+            "type": "shell",
+            "script": "./deploy.sh"
+        }
+    ]
+}

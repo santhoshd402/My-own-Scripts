@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: batch/Job
+metadata:
+  namespace: dev-env
+  name: tomjob
+  labels: 
+    name: tomjob
+spec:
+  selector:
+    matchLabels:
+      name: tomjob
+  template:
+    metadata:
+      name: tomjob
+    spec:
+      containers:
+      - image: 
+        name: 
+        ports: 
+        - containerPort: 8080
+          protocol: TCP
+        
+      
+  
+
+

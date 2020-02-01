@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: contsql
+  labels:
+    app: sql
+    type: dev
+spec: 
+  containers:
+    - image: mysql
+      name: appserver
+      ports:
+      - containerPort: 3306
+        protocol: "TCP" 
+

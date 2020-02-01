@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+  name: myapp
+  labels:
+    name: dev
+    type: app
+spec:
+  selector:
+    matchLabels:
+      name: dev
+  template:
+    metadata: 
+      name: myapp
+      labels:
+        name: dev
+    spec: 
+      containers:
+        - image: tomcat
+          name: myapp
+          ports:
+          - containerPort: 8080
+            protocol: "TCP"

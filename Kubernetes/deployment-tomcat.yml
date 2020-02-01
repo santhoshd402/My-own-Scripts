@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: dev-env
+  name: mytomcatdp
+  labels:
+    name: mytomcatdp
+    type: dev
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mytomcatdp
+      type: dev
+  template: 
+    metadata:
+      name: mytomcatdp
+      labels:
+        name: mytomcatdp
+        type: dev
+    spec:
+      containers:
+      - image: santhud402/mytomcat8
+        name: mytomcatdp
+        ports:
+        - containerPort: 8080
+          protocol: TCP   
+          
+
+
